@@ -1,0 +1,54 @@
+body{
+    background-color: black;
+    color: aliceblue;
+}
+
+.nav-div{
+    float: left;
+    width: 100%;
+    background-color: rgb(3, 3, 34);
+    box-shadow: 2px 2px 40px rgba(240, 248, 255, 0.674);
+    padding: 1% 0% 1% 0%;
+}
+
+li{
+    display: inline;
+    color: aliceblue;
+    font-size: 30px;
+    font-weight: 700;
+    margin: 0% 1% 0% 1%;
+}
+
+a{
+    text-decoration: none;
+}
+
+.main-div{
+    float: left;
+    width: 100%;
+    /* border: 2px solid aliceblue; */
+    background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(../images/harrypotter.png);
+    background-size: 100% 100%;
+    margin: 0.5% 0% 0% 0%;
+    height: 600px;
+}
+
+.main-div h1{
+    text-align: center;
+    margin: 15% 0% 0% 0%;
+    font-size: 80px;
+    font-family: "Rubik Doodle Shadow", serif;
+    font-weight: 800;
+    box-shadow: 4px 4px 20px aliceblue;
+}
+
+.footer-div{
+    float: left;
+    width: 100%;
+    background-color: rgb(3, 3, 34);
+    box-shadow: 2px 2px 40px rgba(240, 248, 255, 0.674);
+    color: aliceblue;
+    text-align: center;
+    font-size: 25px;
+    margin: 0.2% 0% 0% 0%;
+}

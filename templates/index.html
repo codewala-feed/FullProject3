@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>
+        {% block title %}
+            Project3 
+        {% endblock title %}
+    </title>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton+SC&family=Bebas+Neue&family=Rubik+Doodle+Shadow&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="nav-div">
+        <nav>
+            <ul>
+                <a href="/"><li>Home</li></a>
+                <a href="/register_event"><li>Register Event</li></a>
+                <a href="/"><li>View Events</li></a>
+                <a href="/"><li>Book Event</li></a>
+                <a href="/"><li>View Bookings</li></a>
+                <a href="/"><li>Cancel Booking</li></a>
+                <a href="/"><li>Search Event</li></a>
+                <a href="/"><li>Filter Event</li></a>
+            </ul>
+        </nav>
+    </div>
+
+    {% block content %}
+        <div class="main-div">
+                <h1>Event Management System</h1>
+        </div>
+    {% endblock content %}
+
+
+    <div class="footer-div">
+        <p>&copy; All rights reserved 2024 | Developed By Nikhil Pokuri</p>
+    </div>
+</body>
+</html>
