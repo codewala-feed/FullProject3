@@ -70,6 +70,7 @@ a{
     border: 2px solid aliceblue;
     color: aliceblue;
     padding: 1% 0% 1% 0%;
+    text-align: center;
 }
 
 .reg-div button{
@@ -79,7 +80,7 @@ a{
     font-size: 30px;
 }
 
-.view-events-div{
+.view-events-div, .bookings-div{
     float: left;
     width: 100%;
     height: 520px;
@@ -87,16 +88,16 @@ a{
     overflow-y: scroll;
 }
 
-.view-events-div table{
+.view-events-div table, .bookings-div table{
     float: left;
     width: 100%;
     text-align: center;
 }
 
-.view-events-div thead{
+.view-events-div thead, .bookings-div thead{
     font-size: 30px;
 }
 
-.view-events-div tbody{
+.view-events-div tbody, .bookings-div tbody{
     font-size: 25px;
 }

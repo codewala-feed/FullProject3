@@ -18,8 +18,8 @@ table_query = """
 my_cursor.execute(table_query)
 
 book_table_query = """ 
-        create table if not exists bookings (bookind_id int primary key auto_increment,
-        booking_date date, seats_req int, contanct_email varchar(50)
+        create table if not exists bookings (booking_id int primary key auto_increment,
+        event_id int, booking_date date, seats_req int, contact_email varchar(50)
         );
     """
 my_cursor.execute(book_table_query)
@@ -60,6 +60,7 @@ def view_events():
     print(raw)
     return render_template("view_events.html", output=raw)
 
+
 @app.route("/book_event", methods=["GET", "POST"])
 def book_event():
     if request.method == "POST":
@@ -78,19 +79,57 @@ def book_event():
         if not fetched:
             return f"Invalid EventID {event_id}"
         else:
+            check_query = """ 
+                select booking_date from bookings
+                 where event_id=%s and booking_date=%s;
+            """
+            values = [event_id, booking_date]
+
+            my_cursor.execute(check_query, values)
+            booked = my_cursor.fetchall()
+            if booked:
+                return f"Slot Unavailable on {booking_date}"
+
             max_seats = fetched[0][0]
             if seats_req > max_seats:
                 return f"Cannot book more than {max_seats}"
             else:
                 insert_query = """ 
-                    insert into bookings (booking_date, seats_req, contact_email)
-                    values (%s, %s, %s);
+                    insert into bookings (event_id, booking_date, seats_req, contact_email)
+                    values (%s, %s, %s, %s);
                 """
-                values = [booking_date, seats_req, contact_email]
+                values = [event_id,  booking_date, seats_req, contact_email]
                 my_cursor.execute(insert_query, values)
                 my_connection.commit()
                 return "Booking Succesfull"
     else:
         return render_template("book_event.html")
+
+@app.route("/view_bookings", methods=["GET"])
+def view_bookings():
+    read_query = """ 
+        select booking_id, event_id, booking_date, seats_req, contact_email
+           from bookings;
+    """
+    my_cursor.execute(read_query)
+    raw = my_cursor.fetchall()
+    # print(raw)
+    return render_template("view_bookings.html", output=raw)
+
+@app.route("/cancel_booking", methods=["GET", "POST"])
+def cancel_booking():
+    if request.method == "POST":
+        booking_id = request.form["booking_id"]
+        cancel_query = """ 
+            delete from bookings where booking_id=%s;
+        """
+        values = [booking_id]
+        my_cursor.execute(cancel_query, values)
+        return "Booking Deleted"
+    else:
+        return render_template("cancel_booking.html")
+
+
+# my_connection.close()
 
 app.run(debug=True)
